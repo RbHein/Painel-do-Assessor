@@ -19,7 +19,7 @@ function formatNumber(n, digits = 4) {
 // ======== BUSCA VIA BACKEND ========
 async function fetchRates() {
   try {
-    const res = await fetch(`http://localhost:4000/api/rates?nocache=${Date.now()}`);
+    const res = await fetch(`/api/rates?nocache=${Date.now()}`);
     const data = await res.json();
 
     const usdPrice = data?.USD;
