@@ -4,19 +4,17 @@ const path = require("path");
 const { getRates } = require("./back/backCambio");
 
 const app = express();
+
+// 🚨 IMPORTANTE: use sempre a variável de ambiente do Railway
 const PORT = process.env.PORT || 4000;
 
 app.use(cors());
-
-// Servir arquivos estáticos (CSS, JS, imagens)
 app.use(express.static(path.join(__dirname)));
 
-// Servir index.html na raiz
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// API de cotações
 app.get("/api/rates", async (req, res) => {
   try {
     const data = await getRates();
@@ -28,5 +26,5 @@ app.get("/api/rates", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Servidor rodando em http://localhost:${PORT}`);
+  console.log(`✅ Servidor rodando na porta ${PORT}`);
 });
