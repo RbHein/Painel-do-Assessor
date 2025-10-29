@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Painel do Assessor</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Biblioteca de ícones Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  <header>
+    <a href="index.html">
+      <img src="images/logo.png" alt="Logo" class="logo">
+    </a>
+    <h1>Painel do Assessor</h1>
+  </header>
+
+  <!-- Parágrafo explicativo -->
+  <p class="intro-text">
+    Bem-vindo ao Painel do Assessor! Aqui você encontrará ferramentas e atalhos essenciais para o dia a dia,
+    organizados por área. Passe o mouse sobre os botões para ver dicas rápidas sobre o que cada um faz.
+  </p>
+
+  <div class="cards-container">
+    <!-- CARD 1 -->
+    <div class="home-card">
+      <div class="card-title">Operacional</div>
+
+      <button class="index-btn" onclick="location.href='https://atendimento-hub.xpi.com.br/'" data-tooltip="Consulte suas dúvidas no FAQ da XP. Esteja logado no seu HUB Web para acessar o link.">
+        <i class="fas fa-question-circle"></i> FAQ XP
+      </button>
+
+      <button 
+        class="index-btn" 
+        onclick="window.open('https://wa.me/5549999068900?text=Olá, poderia aprovar uma transferência de cliente para o meu código de assessor?', '_blank')" 
+        data-tooltip="Contate e solicite aprovação da transferência do cliente para sua base">
+        <i class="fab fa-whatsapp"></i> Transferência de Assessoria
+      </button>
+
+      <button class="index-btn" onclick="location.href='https://www.figma.com/proto/rqcySTSknU8yHlzti2mtBZ/-NAVEG%C3%81VEL----XP-Empresas?page-id=45%3A3370&node-id=188-23321&viewport=-7443%2C-17282%2C0.21&t=fVRKVS4NDmdJ8sb4-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=50%3A3371'" data-tooltip="Simulador de navegação oficial do Portal XP Empresas">
+        <i class="fas fa-desktop"></i> Guia XP Empresas
+      </button>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="home-card">
+      <div class="card-title">Câmbio</div>
+
+      <button class="index-btn" onclick="location.href='cambio.html'" data-tooltip="Veja as cotações, incluindo Papel Moeda, em tempo real">
+        <i class="fas fa-dollar-sign"></i> Cotações em Tempo Real
+      </button>
+
+      <button 
+        class="index-btn" 
+        onclick="window.open('https://wa.me/5549920013302', '_blank')" 
+        data-tooltip="Contate o Departamento pelo WhatsApp">
+        <i class="fab fa-whatsapp"></i> Falar com o Departamento de Câmbio
+      </button>
+
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="home-card">
+      <div class="card-title">Sucessão e Seguros</div>
+
+      <button class="index-btn" onclick="location.href='https://outlook.office.com/calendar/view/workweek'" data-tooltip="Agende reuniões diretamente na Agenda Outlook Sucessão Solutio. Siga o modelo 'SEU NOME - NOME DO CLIENTE - 1° / 2° REUNIÃO">
+        <i class="fas fa-calendar-alt"></i> Agende uma Reunião com a Área
+      </button>
+
+      <button class="index-btn" onclick="location.href='https://sucessao.netlify.app/xps'" data-tooltip="Gere planilhas de projeção Whole Life da XP Seguros automaticamente. Utilize versões do Excel acima de 2016">
+        <i class="fas fa-file-excel"></i> Gerar Planilha de Projeção Whole Life
+      </button>
+
+      <button class="index-btn" onclick="window.open('https://wa.me/5541984087644?text=Olá%2C%20sou%20assessor%20da%20Solutio%20Investimentos%20e%20gostaria%20de%20cotar%20um%20seguro.', '_blank')" data-tooltip="Entre em contato com a German Financial, identifique-se como Assessor da Solutio e solicite uma cotação de Seguro">
+        <i class="fab fa-whatsapp"></i> Cotar Seguros
+      </button>
+
+
+    </div>
+  </div>
+
+  <footer>Desenvolvido por Rafael Belchor Hein</footer>
+</body>
+</html>
