@@ -15,15 +15,15 @@ function isCacheValid() {
 // -------------------------------
 // Função auxiliar: extrai número do HTML
 // -------------------------------
+
 function parseInvestingPrice(html) {
-  // regex para pegar o conteúdo do div que tem class text-5xl/9 font-bold ...
-  const regex = /<div[^>]*text-5xl\/9[^>]*>([\d.,]+)<\/div>/i;
+  const regex = /<div[^>]*data-test="instrument-price-last"[^>]*>([\d.,]+)<\/div>/i;
   const match = html.match(regex);
   if (!match) return NaN;
 
   let value = match[1];
 
-  // remove pontos que são separadores de milhar (antes da vírgula) e troca vírgula por ponto decimal
+  // remove separador de milhar e converte vírgula para ponto
   if (value.includes(",") && value.includes(".")) {
     value = value.replace(/\.(?=\d{3},)/g, "").replace(",", ".");
   } else if (value.includes(",")) {
@@ -32,7 +32,6 @@ function parseInvestingPrice(html) {
 
   return parseFloat(value);
 }
-
 
 // -------------------------------
 // Função para buscar cotação Investing
@@ -55,19 +54,25 @@ async function fetchInvesting(url) {
 async function getRates() {
   if (isCacheValid()) return { ...cache.data, cached: true };
 
-  // URLs do Investing (USD/BRL e EUR/BRL)
-    const USD_URL = "https://www.investing.com/currencies/usd-brl";
-    const EUR_URL = "https://www.investing.com/currencies/eur-brl";
+  // URLs do Investing
+  const USD_URL = "https://www.investing.com/currencies/usd-brl";
+  const EUR_URL = "https://www.investing.com/currencies/eur-brl";
+  const CHF_URL = "https://www.investing.com/currencies/chf-brl";
 
-    const [USD, EUR] = await Promise.all([
+  // Busca simultânea
+  const [USD, EUR, CHF] = await Promise.all([
     fetchInvesting(USD_URL),
-    fetchInvesting(EUR_URL)
-    ]);
+    fetchInvesting(EUR_URL),
+    fetchInvesting(CHF_URL),
+  ]);
 
-  if (!USD || !EUR) throw new Error("Não foi possível obter USD ou EUR do backend (Investing).");
+  if (!USD || !EUR || !CHF) throw new Error("❌ Falha ao obter cotações do Investing.");
 
-  const result = { USD, EUR, source: "investing" };
+  const result = { USD, EUR, CHF, source: "investing" };
+
+  // Atualiza cache
   cache = { timestamp: Date.now(), data: result };
+
   return { ...result, cached: false };
 }
 

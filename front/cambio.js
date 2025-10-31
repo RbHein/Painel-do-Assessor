@@ -24,20 +24,25 @@ async function fetchRates() {
 
     const usdPrice = data?.USD;
     const eurPrice = data?.EUR;
+    const chfPrice = data?.CHF;
 
-    if (!usdPrice || !eurPrice) {
-      throw new Error("Não foi possível obter USD ou EUR do backend (Investing).");
-    }
+    if (!usdPrice) console.warn("⚠️ USD não veio do backend");
+    if (!eurPrice) console.warn("⚠️ EUR não veio do backend");
+    if (!chfPrice) console.warn("⚠️ CHF não veio do backend");
 
+    
     // ======== USD ========
     document.getElementById("usdMarket").textContent = `R$ ${formatNumber(usdPrice)}`;
     document.getElementById("usdCash").textContent = `R$ ${formatNumber(usdPrice * 1.075)}`;
-    document.getElementById("usdInvestGlobal").textContent = `R$ ${formatNumber(usdPrice * 1.0187)}`;
-    document.getElementById("usdDigitalGlobal").textContent = `R$ ${formatNumber(usdPrice * 1.0225)}`;
+    document.getElementById("usdInvestGlobal").textContent = `R$ ${formatNumber(usdPrice * 1.0187 * 1.011)}`;
+    document.getElementById("usdDigitalGlobal").textContent = `R$ ${formatNumber(usdPrice * 1.0225 * 1.035)}`;
 
     // ======== EUR ========
     document.getElementById("eurMarket").textContent = `R$ ${formatNumber(eurPrice)}`;
     document.getElementById("eurCash").textContent = `R$ ${formatNumber(eurPrice * 1.075)}`;
+
+    // ======== OUTRAS ========
+    document.getElementById("chfCash").textContent = `R$ ${formatNumber(chfPrice)}`;
 
   } catch (err) {
     console.error("Erro ao buscar cotações via proxy Investing:", err);
